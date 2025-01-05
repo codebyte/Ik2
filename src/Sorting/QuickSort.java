@@ -5,7 +5,7 @@ import java.util.Random;
 public class QuickSort {
     public static int randomNumber(int start, int end) {
         Random random = new Random();
-        return random.nextInt(end - start + 1) + start;
+        return random.nextInt(end - start) + start;
     }
 
     public static void swap(int a[], int i, int j) {
