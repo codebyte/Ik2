@@ -1,3 +1,30 @@
+/*
+    
+2 Sum In An Array
+
+Given an array and a target number, find the indices of the two values from the array that sum up to the given target number.
+
+Example One
+
+{
+"numbers": [5, 3, 10, 45, 1],
+"target": 6
+}
+Output:
+
+[0, 4]
+Sum of the elements at index 0 and 4 is 6.
+
+Example Two
+
+{
+"numbers": [4, 1, 5, 0, -1],
+"target": 10
+}
+Output:
+
+[-1, -1]
+*/
 package Sorting.ClassPart01;
 
 import java.util.Arrays;
