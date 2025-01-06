@@ -107,6 +107,7 @@ public class TwoSumSorted {
         for(int i = 0; i < a.length; i++) {
             list.add(a[i]);
         }
+
         two_sum(list, 88);
 
         System.out.println(Arrays.toString(a));
