@@ -1,4 +1,4 @@
-package Sorting.ClassPart01;
+package Sorting.PracticeSet01;
 
 /*
 
@@ -32,7 +32,6 @@ Solution is only allowed to use constant extra memory
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class DutchNationalFlag {
