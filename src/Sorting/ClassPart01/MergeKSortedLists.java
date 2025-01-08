@@ -54,9 +54,6 @@ class LinkedListNodeComparator implements Comparator<LinkedListNode> {
 }
 
 public class MergeKSortedLists {
-
-
-
     static LinkedListNode merge_k_lists(ArrayList<LinkedListNode> lists) {
 
         if(lists.isEmpty()) {
@@ -73,6 +70,7 @@ public class MergeKSortedLists {
         LinkedListNode temp = null;
         LinkedListNode head = null;
         LinkedListNode tail = null;
+
         while((temp = minHeap.poll()) != null) {
             System.out.println(temp.value);
             if(head == null) {
