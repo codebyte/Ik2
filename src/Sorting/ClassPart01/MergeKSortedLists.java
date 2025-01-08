@@ -59,10 +59,15 @@ public class MergeKSortedLists {
 
     static LinkedListNode merge_k_lists(ArrayList<LinkedListNode> lists) {
 
+        if(lists.isEmpty()) {
+           return null;
+        }
+
         PriorityQueue<LinkedListNode> minHeap=new PriorityQueue(lists.size(), new LinkedListNodeComparator() );
 
         lists.forEach(list -> {
-            minHeap.add(list);
+            if(list != null)
+                minHeap.add(list);
         });
 
         LinkedListNode temp = null;
