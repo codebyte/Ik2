@@ -56,14 +56,14 @@ class LinkedListNodeComparator implements Comparator<LinkedListNode> {
 public class MergeKSortedLists {
     static LinkedListNode merge_k_lists(ArrayList<LinkedListNode> lists) {
 
-        if(lists.isEmpty()) {
-           return null;
+        if (lists.isEmpty()) {
+            return null;
         }
 
-        PriorityQueue<LinkedListNode> minHeap=new PriorityQueue(lists.size(), new LinkedListNodeComparator() );
+        PriorityQueue<LinkedListNode> minHeap = new PriorityQueue(lists.size(), new LinkedListNodeComparator());
 
         lists.forEach(list -> {
-            if(list != null)
+            if (list != null)
                 minHeap.add(list);
         });
 
@@ -71,16 +71,16 @@ public class MergeKSortedLists {
         LinkedListNode head = null;
         LinkedListNode tail = null;
 
-        while((temp = minHeap.poll()) != null) {
+        while ((temp = minHeap.poll()) != null) {
             System.out.println(temp.value);
-            if(head == null) {
+            if (head == null) {
                 head = temp;
                 tail = temp;
             } else {
                 tail.next = temp;
             }
             tail = temp;
-            if(temp.next != null) {
+            if (temp.next != null) {
                 minHeap.add(temp.next);
             }
             tail.next = null;
@@ -93,13 +93,13 @@ public class MergeKSortedLists {
         LinkedListNode head = null;
         LinkedListNode temp = null;
 
-        for(int i = 0; i < a.length; i++) {
-            if(head == null) {
+        for (int i = 0; i < a.length; i++) {
+            if (head == null) {
                 head = new LinkedListNode(a[i]);
                 temp = head;
             } else {
-               temp.next = new LinkedListNode(a[i]);
-               temp = temp.next;
+                temp.next = new LinkedListNode(a[i]);
+                temp = temp.next;
             }
         }
         return head;
@@ -110,8 +110,8 @@ public class MergeKSortedLists {
         ArrayList<LinkedListNode> lists = new ArrayList<>();
 
         int a[] = {1, 3, 5};
-        int b[]  = {3, 4};
-        int c[]  = {7};
+        int b[] = {3, 4};
+        int c[] = {7};
 
         LinkedListNode l1 = createList(a);
         LinkedListNode l2 = createList(b);
@@ -123,8 +123,8 @@ public class MergeKSortedLists {
 
         LinkedListNode head = merge_k_lists(lists);
 
-        for(LinkedListNode temp = head; temp!= null; temp = temp.next) {
-            System.out.println(" -> "+ temp.value);
+        for (LinkedListNode temp = head; temp != null; temp = temp.next) {
+            System.out.println(" -> " + temp.value);
         }
 
 

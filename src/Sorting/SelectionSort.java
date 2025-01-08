@@ -12,14 +12,14 @@ public class SelectionSort {
 
     public static void sort(int a[]) {
         int idx = 0;
-        for(int i = 0; i < a.length; i++) {
-           idx = i;
-           for(int j = i+1; j < a.length; j++) {
-                if(a[j] < a[idx]) {
+        for (int i = 0; i < a.length; i++) {
+            idx = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[j] < a[idx]) {
                     idx = j;
                 }
-           }
-           swap(a, idx, i);
+            }
+            swap(a, idx, i);
         }
     }
 

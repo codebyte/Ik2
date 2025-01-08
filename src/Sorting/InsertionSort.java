@@ -5,17 +5,15 @@ import java.util.Arrays;
 public class InsertionSort {
 
     public static void sort(int a[]) {
-        for(int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; i++) {
             int val = a[i];
             int j = i;
-            for(; (j > 0) && (val < a[j-1]); j--) {
-                a[j] = a[j-1];
+            for (; (j > 0) && (val < a[j - 1]); j--) {
+                a[j] = a[j - 1];
             }
             a[j] = val;
         }
-   }
-
-
+    }
 
 
     public static void main(String args[]) {

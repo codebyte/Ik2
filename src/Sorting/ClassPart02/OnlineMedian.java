@@ -52,7 +52,7 @@ public class OnlineMedian {
 
         int median = 0;
 
-        for(int i = 0; i < stream.size(); i++) {
+        for (int i = 0; i < stream.size(); i++) {
 
             int ele = stream.get(i);
 

@@ -26,6 +26,7 @@ Output:
 [-1, -1]
 */
 package Sorting.ClassPart01;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -36,18 +37,18 @@ public class TwoSumSorted {
         ArrayList<Integer> result = new ArrayList<>();
         qSort(a, 0, a.length);
         int i = 0;
-        int j = a.length-1;
-        while(i < j) {
+        int j = a.length - 1;
+        while (i < j) {
             int sum = a[i] + a[j];
-            if(sum == target) {
+            if (sum == target) {
                 result.add(i);
                 result.add(j);
                 return result;
             }
-            if(sum > target) {
+            if (sum > target) {
                 j--;
             } else {
-               i++;
+                i++;
             }
         }
         result.add(-1);
@@ -71,8 +72,8 @@ public class TwoSumSorted {
         System.out.println("Start : " + start + "end : " + end + "seed Pivot : " + seedPivot);
         swap(a, start, seedPivot);
         int left = start;
-        for(int right = start+1; right < a.length; right++) {
-            if(a[right] < a[start]) {
+        for (int right = start + 1; right < a.length; right++) {
+            if (a[right] < a[start]) {
                 left++;
                 swap(a, left, right);
             }
@@ -82,18 +83,18 @@ public class TwoSumSorted {
     }
 
     public static void qSort(int a[], int start, int end) {
-        if(start >= end) {
+        if (start >= end) {
             return;
         }
         int pivot = partition(a, start, end);
-        qSort(a, start, pivot-1);
-        qSort(a, pivot+1, end);
+        qSort(a, start, pivot - 1);
+        qSort(a, pivot + 1, end);
     }
 
     static ArrayList<Integer> two_sum(ArrayList<Integer> numbers, Integer target) {
 
         int a[] = new int[numbers.size()];
-        for(int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; i++) {
             a[i] = numbers.get(i);
         }
         return twoSum(a, target);
@@ -103,8 +104,8 @@ public class TwoSumSorted {
         int a[] = {10, 34, 456, 5, 7, 78, 0};
         qSort(a, 0, a.length);
 
-        ArrayList<Integer>  list = new ArrayList<>();
-        for(int i = 0; i < a.length; i++) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
             list.add(a[i]);
         }
 

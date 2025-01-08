@@ -55,8 +55,8 @@ public class KthLargestInArray {
         int seedPivot = randomNumber(start, end);
         swap(a, start, seedPivot);
         int left = start;
-        for(int right = start+1; right <= end; right++) {
-            if(a[right] < a[start]) {
+        for (int right = start + 1; right <= end; right++) {
+            if (a[right] < a[start]) {
                 left++;
                 swap(a, left, right);
             }
@@ -66,16 +66,16 @@ public class KthLargestInArray {
     }
 
     public static void qSelect(int a[], int start, int end, int k) {
-        if(start >= end) {
+        if (start >= end) {
             return;
         }
         int pivot = partition(a, start, end);
-        if(pivot == k) {
+        if (pivot == k) {
             return;
         }
-        if(k < pivot) {
+        if (k < pivot) {
             qSelect(a, start, pivot - 1, k);
-        }  else {
+        } else {
             qSelect(a, pivot + 1, end, k);
         }
     }
@@ -86,9 +86,9 @@ public class KthLargestInArray {
         int k = 4;
 
         System.out.println(Arrays.toString(a));
-        qSelect(a, 0, a.length-1, a.length-k);
+        qSelect(a, 0, a.length - 1, a.length - k);
         System.out.println(Arrays.toString(a));
-        System.out.println(a[a.length-k]);
+        System.out.println(a[a.length - k]);
 
 
     }

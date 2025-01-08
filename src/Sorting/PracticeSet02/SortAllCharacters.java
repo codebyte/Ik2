@@ -44,8 +44,8 @@ public class SortAllCharacters {
         int seedPivot = randomNumber(start, end);
         Collections.swap(c, start, seedPivot);
         int left = start;
-        for(int right = start+1; right <= end; right++) {
-            if(c.get(right) < c.get(start)) {
+        for (int right = start + 1; right <= end; right++) {
+            if (c.get(right) < c.get(start)) {
                 left++;
                 Collections.swap(c, left, right);
             }
@@ -55,24 +55,24 @@ public class SortAllCharacters {
     }
 
     public static void qSort(ArrayList<Character> c, int start, int end) {
-        if(start >= end) {
-            return ;
+        if (start >= end) {
+            return;
         }
         int pivot = partition(c, start, end);
-        qSort(c, start, pivot-1);
-        qSort(c, pivot+1, end);
+        qSort(c, start, pivot - 1);
+        qSort(c, pivot + 1, end);
     }
 
     public static void main(String args[]) {
-        Character c[] = { 'a', 's', 'd', 'f', 'g', '*', '&', '!', 'z', 'y'};
+        Character c[] = {'a', 's', 'd', 'f', 'g', '*', '&', '!', 'z', 'y'};
 
         ArrayList<Character> b = new ArrayList<>();
 
-        for(int i = 0; i < c.length; i++) {
+        for (int i = 0; i < c.length; i++) {
             b.add(c[i]);
         }
 
-        qSort(b, 0, b.size()-1);
+        qSort(b, 0, b.size() - 1);
         System.out.println(b.toString());
     }
 

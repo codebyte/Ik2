@@ -37,26 +37,26 @@ import java.util.Collections;
 public class SegregateEvenOddNumbers {
 
     public static void swap(int a[], int i, int j) {
-       int temp = a[i];
-       a[i] = a[j];
-       a[j] = temp;
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
     public static void evenOdd(int a[]) {
         int even = -1;
-        for(int i = 0; i < a.length; i++) {
-            if(a[i] % 2 == 0) {
-               even++;
-               swap(a, even, i);
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 == 0) {
+                even++;
+                swap(a, even, i);
             }
         }
     }
 
     public static void main(String args[]) {
 
-       int a[] = {1, 2, 3, 4};
-       evenOdd(a);
-       System.out.println(Arrays.toString(a));
+        int a[] = {1, 2, 3, 4};
+        evenOdd(a);
+        System.out.println(Arrays.toString(a));
     }
 
 }

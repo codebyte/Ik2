@@ -36,9 +36,9 @@ import java.util.Queue;
 
 public class KthLargestInStream {
 
-    static void insertIntoHeap(Queue<Integer> minHeap, int ele, int k)  {
-        if(minHeap.size() == k) {
-            if(minHeap.peek() < ele) {
+    static void insertIntoHeap(Queue<Integer> minHeap, int ele, int k) {
+        if (minHeap.size() == k) {
+            if (minHeap.peek() < ele) {
                 minHeap.poll();
                 minHeap.add(ele);
             }
@@ -57,8 +57,8 @@ public class KthLargestInStream {
         });
 
         append_stream.forEach(ele -> {
-           insertIntoHeap(minHeap, ele, k);
-           result.add(minHeap.peek());
+            insertIntoHeap(minHeap, ele, k);
+            result.add(minHeap.peek());
         });
         return result;
     }

@@ -1,4 +1,5 @@
 package Sorting.ClassPart02;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,6 +8,7 @@ import java.util.PriorityQueue;
 class Pair {
     Integer value;
     Integer id;
+
     Pair(Integer id, Integer value) {
         this.value = value;
         this.id = id;
@@ -28,10 +30,10 @@ public class TopKFrequentElements {
 
         int prevNum = 0;
         int nCount = 0;
-        for(int i = 0; i < a.size(); ) {
+        for (int i = 0; i < a.size(); ) {
 
             prevNum = a.get(i);
-            nCount=1;
+            nCount = 1;
             int j = i + 1;
             for (; (i < a.size()) && (a.get(i) == prevNum); i++) {
                 nCount++;
@@ -48,8 +50,8 @@ public class TopKFrequentElements {
 
         Pair p = null;
         ArrayList<Integer> l = new ArrayList<>();
-        while((p = minHeap.poll() )!= null) {
-           l.add(p.id);
+        while ((p = minHeap.poll()) != null) {
+            l.add(p.id);
         }
         return l;
     }
@@ -58,7 +60,7 @@ public class TopKFrequentElements {
         int a[] = {5, 4, 1, 3, 2, 7, 6};
 
         ArrayList<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; i++) {
             numbers.add(a[i]);
         }
         System.out.println(topK(numbers, 7).toString());

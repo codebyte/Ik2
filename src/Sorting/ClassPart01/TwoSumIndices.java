@@ -11,9 +11,9 @@ public class TwoSumIndices {
         ArrayList<Integer> result = new ArrayList<>();
 
 
-        for(int i = 0; i < a.size(); i++) {
+        for (int i = 0; i < a.size(); i++) {
             int complement = target - a.get(i);
-            if(map.containsKey(complement)) {
+            if (map.containsKey(complement)) {
                 result.add(map.get(complement));
                 result.add(i);
                 return result;
@@ -22,7 +22,7 @@ public class TwoSumIndices {
             }
         }
 
-        if(result.size() != 2) {
+        if (result.size() != 2) {
             result.add(-1);
             result.add(-1);
         }
@@ -30,12 +30,11 @@ public class TwoSumIndices {
     }
 
 
-
     public static void main(String args[]) {
 
         int a[] = {4, 1, 5, 0, -1};
-        ArrayList<Integer>  list = new ArrayList<>();
-        for(int i = 0; i < a.length; i++) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < a.length; i++) {
             list.add(a[i]);
         }
         System.out.println(two_sum(list, 6));

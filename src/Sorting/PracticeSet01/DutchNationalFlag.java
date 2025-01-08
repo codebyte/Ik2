@@ -39,11 +39,11 @@ public class DutchNationalFlag {
     public static void flag(ArrayList<Character> balls) {
         int red = -1;
         int green = -1;
-        for(int i = 0; i < balls.size(); i++) {
-            if(balls.get(i) == 'G') {
+        for (int i = 0; i < balls.size(); i++) {
+            if (balls.get(i) == 'G') {
                 green++;
                 Collections.swap(balls, i, green);
-            } else if(balls.get(i) == 'R') {
+            } else if (balls.get(i) == 'R') {
                 green++;
                 Collections.swap(balls, i, green);
                 red++;
@@ -58,7 +58,7 @@ public class DutchNationalFlag {
 
         ArrayList<Character> b = new ArrayList<>();
 
-        for(int i = 0; i < balls.length; i++) {
+        for (int i = 0; i < balls.length; i++) {
             b.add(balls[i]);
         }
         System.out.println(b.toString());
