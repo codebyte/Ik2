@@ -44,7 +44,7 @@ public class SortAllCharacters {
         int seedPivot = randomNumber(start, end);
         Collections.swap(c, start, seedPivot);
         int left = start;
-        for(int right = start+1; right < c.size(); right++) {
+        for(int right = start+1; right <= end; right++) {
             if(c.get(right) < c.get(start)) {
                 left++;
                 Collections.swap(c, left, right);
