@@ -29,8 +29,6 @@ import java.util.Collections;
 import java.util.Random;
 
 public class SortAllCharacters {
-
-
     public static int randomNumber(int start, int end) {
         Random random = new Random();
         return random.nextInt(end - start) + start;
