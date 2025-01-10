@@ -51,7 +51,6 @@ class ColumnComparator implements Comparator<ArrayList<Integer>> {
 }
 
 public class AttendMeetings {
-
     static Integer can_attend_all_meetings(ArrayList<ArrayList<Integer>> intervals) {
         Collections.sort(intervals, new ColumnComparator());
         for (int i = 1; i < intervals.size(); i++) {
@@ -66,16 +65,8 @@ public class AttendMeetings {
 
     public static void main(String args[]) {
         ArrayList<ArrayList<Integer>> intervals = new ArrayList<>();
-
         intervals.add(new ArrayList<>(Arrays.asList(1, 5)));
         intervals.add(new ArrayList<>(Arrays.asList(4, 8)));
-
         System.out.println(can_attend_all_meetings(intervals));
-
-
     }
-
-
 }
-
-
