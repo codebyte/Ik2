@@ -1,10 +1,7 @@
 package Trees;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 class BinaryTreeNode {
     Integer value;
@@ -172,6 +169,10 @@ public class BST {
         return search(root, value);
     }
 
+
+    // BFS Problems
+
+
     static class Pair {
         BinaryTreeNode node;
         int level;
@@ -226,13 +227,13 @@ public class BST {
             ArrayList<Integer> list = new ArrayList<>();
             int qSize = q.size();
             i = 0;
-            while(i < qSize) {
+            while (i < qSize) {
                 node = q.poll();
                 list.add(node.value);
-                if(node.left != null) {
+                if (node.left != null) {
                     q.add(node.left);
                 }
-                if(node.right != null) {
+                if (node.right != null) {
                     q.add(node.right);
                 }
                 i++;
@@ -240,6 +241,165 @@ public class BST {
             result.add(list);
         }
         return result;
+    }
+
+    static class TreeNode {
+        Integer value;
+        ArrayList<TreeNode> children;
+
+        TreeNode(Integer value) {
+            this.value = value;
+            this.children = new ArrayList(3);
+        }
+    }
+
+    static ArrayList<ArrayList<Integer>> level_order(TreeNode root) {
+
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+
+            int qSize = q.size();
+            int i = 0;
+            ArrayList<Integer> list = new ArrayList<>();
+
+            while (i < qSize) {
+                TreeNode node = q.poll();
+                list.add(node.value);
+                node.children.forEach(cNode -> {
+                    q.add(cNode);
+                });
+                i++;
+            }
+            result.add(list);
+        }
+        return result;
+    }
+
+    static ArrayList<ArrayList<Integer>> reverse_level_order_traversal(BinaryTreeNode root) {
+
+        ArrayList<ArrayList<Integer>> result = null;
+        result = levelOrderTraversal(root);
+        Collections.reverse(result);
+        return result;
+    }
+
+    static ArrayList<Integer> right_view(BinaryTreeNode root) {
+        ArrayList<Integer> result = new ArrayList<>();
+
+        Queue<BinaryTreeNode> q = new LinkedList<>();
+
+        return result;
+    }
+
+    // DFS Problems
+
+    static Boolean path_sum(BinaryTreeNode root, Integer k) {
+
+        if (root == null) {
+            return false;
+        }
+
+        Boolean ret = false;
+
+        if ((root.left == null) && (root.right == null)) {
+            if (k.equals(root.value)) {
+                return true;
+            }
+        }
+
+        if (root.left != null) {
+            ret = path_sum(root.left, k - root.value);
+            if (ret) {
+                return true;
+            }
+        }
+
+        if (root.right != null) {
+            ret = path_sum(root.right, k - root.value);
+            if (ret) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+    static ArrayList<ArrayList<Integer>> path_sum_helper(BinaryTreeNode root, ArrayList<Integer> path) {
+
+        if ((root.left == null) && (root.right == null)) {
+            ArrayList<Integer> fList = new ArrayList<>();
+            path.add(root.value);
+            fList.addAll(path);
+            path.remove(path.size() - 1);
+            result.add(fList);
+            return result;
+        }
+
+        path.add(root.value);
+        if (root.left != null) {
+            path_sum_helper(root.left, path);
+        }
+
+        if (root.right != null) {
+            path_sum_helper(root.right, path);
+        }
+
+        path.remove(path.size() - 1);
+        return result;
+    }
+
+
+    static ArrayList<ArrayList<Integer>> all_paths_of_a_binary_tree(BinaryTreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        return path_sum_helper(root, new ArrayList<>());
+    }
+
+
+    static Integer maxTreeDiameter = 0;
+
+    static Integer tree_diameter(BinaryTreeNode root) {
+
+        if ((root.left == null) && (root.right == null)) {
+            return 0;
+        }
+
+        System.out.println(maxTreeDiameter);
+
+        int lh = 0;
+        int rh = 0;
+
+        if (root.left != null) {
+             lh = tree_diameter(root.left) + 1;
+        }
+        if (root.right != null) {
+            rh = tree_diameter(root.right) + 1;
+        }
+
+        maxTreeDiameter = Math.max(maxTreeDiameter, lh + rh);
+
+        return (Math.max(lh, rh));
+    }
+
+    static Integer binary_tree_diameter(BinaryTreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int dia = tree_diameter(root);
+
+        return maxTreeDiameter;
     }
 
     static void printBST(BinaryTreeNode root) {
@@ -255,7 +415,8 @@ public class BST {
     }
 
     public static void main(String args[]) {
-        ArrayList<Integer> values = new ArrayList<>(List.of(10, 5, 12, 67, 8, 99));
+        //ArrayList<Integer> values = new ArrayList<>(List.of(10, 5, 12, 67, 8,  9, 99, 100));
+        ArrayList<Integer> values = new ArrayList<>(List.of(0, 1, 2, 3, 4));
 
         System.out.println("Build BST");
         BinaryTreeNode root = build_a_bst(values);
@@ -268,6 +429,11 @@ public class BST {
         System.out.println(get_max(root));
         System.out.println(level_order_traversal(root).toString());
         System.out.println(levelOrderTraversal(root).toString());
+        System.out.println(reverse_level_order_traversal(root).toString());
+        System.out.println(path_sum(root, 23).toString());
+
+        System.out.println(all_paths_of_a_binary_tree(root).toString());
+        System.out.println(binary_tree_diameter(root));
 
 
     }
