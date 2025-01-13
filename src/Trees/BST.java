@@ -381,7 +381,7 @@ public class BST {
         int rh = 0;
 
         if (root.left != null) {
-             lh = tree_diameter(root.left) + 1;
+            lh = tree_diameter(root.left) + 1;
         }
         if (root.right != null) {
             rh = tree_diameter(root.right) + 1;
@@ -402,6 +402,190 @@ public class BST {
         return maxTreeDiameter;
     }
 
+    static Integer unival = 0;
+
+    static Boolean getUnival(BinaryTreeNode root) {
+        if ((root.left == null) && (root.right == null)) {
+            unival++;
+            return true;
+        }
+
+        Boolean lunival = true;
+
+
+        if (root.left != null) {
+            if (!getUnival(root.left) || !root.value.equals(root.left.value)) {
+                lunival = false;
+            }
+        }
+
+        if (root.right != null) {
+            if (!getUnival(root.right) || !root.value.equals(root.right.value)) {
+                lunival = false;
+            }
+        }
+
+
+        if (lunival) {
+            unival++;
+            return true;
+        }
+
+        return false;
+    }
+
+    static Integer find_single_value_trees(BinaryTreeNode root) {
+        if (root == null) {
+            unival = 0;
+            return unival;
+        }
+        getUnival(root);
+        return unival;
+    }
+
+
+    // Post Order Traversal without recursion
+    static Stack<BinaryTreeNode> stack = new Stack<>();
+
+    static ArrayList<Integer> postorder_traversal(BinaryTreeNode root) {
+        ArrayList<Integer> result = new ArrayList<>();
+
+        BinaryTreeNode node = null;
+
+        if (root == null) {
+            new ArrayList<>();
+        }
+
+        stack.add(root);
+
+        while (!stack.isEmpty()) {
+
+            node = stack.pop();
+            result.add(node.value);
+
+            if (node.left != null) {
+                stack.add(node.left);
+            }
+            if (node.right != null) {
+                stack.add(node.right);
+            }
+        }
+        Collections.reverse(result);
+        return result;
+    }
+
+
+    static BinaryTreeNode ancestor = null;
+
+    static ArrayList<Boolean> findLCA(BinaryTreeNode root, BinaryTreeNode a, BinaryTreeNode b) {
+        ArrayList<Boolean> retVal = new ArrayList<>();
+        ArrayList<Boolean> leftVal = new ArrayList<>();
+        ArrayList<Boolean> rightVal = new ArrayList<>();
+        Boolean afound = false;
+        Boolean bfound = false;
+
+        if (root.value.equals(a.value)) {
+            afound = true;
+        }
+        if (root.value.equals(b.value)) {
+            bfound = true;
+        }
+
+        if ((root.left == null) && (root.right == null)) {
+            retVal.add(afound);
+            retVal.add(bfound);
+            return retVal;
+        }
+
+        if (root.left != null) {
+            leftVal = findLCA(root.left, a, b);
+        }
+
+        if (root.right != null) {
+            rightVal = findLCA(root.right, a, b);
+        }
+
+        if (!leftVal.isEmpty()) {
+            if (leftVal.get(0) == true) {
+                afound = true;
+            }
+            if (leftVal.get(1) == true) {
+                bfound = true;
+            }
+        }
+
+        if (!rightVal.isEmpty()) {
+            if (rightVal.get(0) == true) {
+                afound = true;
+            }
+            if (rightVal.get(1) == true) {
+                bfound = true;
+            }
+        }
+
+
+        if ((ancestor == null) && (afound == true) && (bfound == true)) {
+            ancestor = new BinaryTreeNode(root.value);
+        }
+
+        retVal.add(afound);
+        retVal.add(bfound);
+        return retVal;
+    }
+
+
+    static Integer lca(BinaryTreeNode root, BinaryTreeNode a, BinaryTreeNode b) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        findLCA(root, a, b);
+
+        if (ancestor != null) {
+            return ancestor.value;
+        }
+        return 0;
+    }
+
+
+    static Boolean bst = true;
+    static Integer isBst(BinaryTreeNode root) {
+
+        if ((root.left == null) && (root.right == null)) {
+            return root.value;
+        }
+
+        int lnum = 0;
+        int rnum = 0;
+
+        if (root.left != null) {
+            lnum = isBst(root.left);
+            if (lnum > root.value) {
+                bst = false;
+            }
+        }
+        if (root.right != null) {
+            rnum = isBst(root.right);
+            if (rnum < root.value) {
+                bst = false;
+            }
+        }
+
+        return Math.max(root.value, Math.max(lnum, rnum));
+
+    }
+
+
+    static Boolean is_bst(BinaryTreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        isBst(root);
+        return bst;
+    }
+
+
     static void printBST(BinaryTreeNode root) {
 
         BinaryTreeNode node;
@@ -415,8 +599,8 @@ public class BST {
     }
 
     public static void main(String args[]) {
-        //ArrayList<Integer> values = new ArrayList<>(List.of(10, 5, 12, 67, 8,  9, 99, 100));
-        ArrayList<Integer> values = new ArrayList<>(List.of(0, 1, 2, 3, 4));
+        ArrayList<Integer> values = new ArrayList<>(List.of(10, 5, 12, 67, 8, 7, 9, 99, 100));
+        // ArrayList<Integer> values = new ArrayList<>(List.of(0, 1, 2, 3, 4));
 
         System.out.println("Build BST");
         BinaryTreeNode root = build_a_bst(values);
@@ -434,6 +618,15 @@ public class BST {
 
         System.out.println(all_paths_of_a_binary_tree(root).toString());
         System.out.println(binary_tree_diameter(root));
+        System.out.println(find_single_value_trees(root));
+        System.out.println(postorder_traversal(root).toString());
+
+
+        BinaryTreeNode a = new BinaryTreeNode(7);
+        BinaryTreeNode b = new BinaryTreeNode(9);
+
+        System.out.println(lca(root, a, b).toString());
+        System.out.println(is_bst(root));
 
 
     }
