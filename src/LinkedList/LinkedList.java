@@ -70,15 +70,48 @@ public class LinkedList {
         return false;
     }
 
+    public static LinkedListNode removeNthFromEnd(LinkedListNode head, int n) {
+
+        LinkedListNode temp = head;
+        LinkedListNode first = head;
+
+        if(head.next == null) {
+            return null;
+        }
+
+        int i = 0;
+        for (i = 0; (i < n) && (temp.next != null); i++) {
+            temp = temp.next;
+        }
+
+        while (temp.next != null) {
+            temp = temp.next;
+            first = first.next;
+        }
+
+
+        if (first.next != null) {
+            if(first.next.next != null) {
+                first.next = first.next.next;
+            } else {
+                first.next = null;
+            }
+        }
+
+        return head;
+    }
+
+
     public static void main(String args[]) {
 
         LinkedListNode head = new LinkedListNode(12);
         LinkedListNode tail = head;
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 1; i++) {
             head = insert(head, i * 10);
         }
         display(head);
+        /*
         removeNthLastNode(head, 6);
         System.out.println();
         display(head);
@@ -88,6 +121,10 @@ public class LinkedList {
         System.out.println("Head : " + head.data);
         System.out.println("Tail : " + tail.data);
         System.out.println(detectCycle(head));
+         */
+
+        System.out.println(removeNthFromEnd(head, 2).data);
+        display(head);
 
 
     }

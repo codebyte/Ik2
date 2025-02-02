@@ -36,11 +36,41 @@ public class generateParanthesis {
         return result;
     }
 
-    public static void main(String args[]) {
+    public static void swap(int nums[], int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
 
-        System.out.println(generateParenthesis(5).toString());
 
+    public static void permuteeee(int[] nums, ArrayList<Integer> slate, int index, List<List<Integer>> result) {
+        if (index == nums.length) {
+            result.add(new ArrayList<>(slate));
+            return;
+        }
+
+        for (int i = index; i < nums.length; i++) {
+            slate.add(nums[i]);
+            swap(nums, i, index);
+            permuteeee(nums, slate, index + 1, result);
+            swap(nums, i, index);
+            slate.remove(slate.size() - 1);
+        }
+    }
+
+    public static List<List<Integer>> permute(int[] nums) {
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        permuteeee(nums, new ArrayList<>(), 0, result);
+        return result;
 
     }
 
+    public static void main(String args[]) {
+
+        System.out.println(generateParenthesis(5).toString());
+        int nums[] = {1, 2, 3};
+        System.out.println(permute(nums));
+    }
 }

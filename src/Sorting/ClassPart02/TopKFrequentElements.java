@@ -65,7 +65,6 @@ public class TopKFrequentElements {
         }
         System.out.println(topK(numbers, 7).toString());
 
-
     }
 
 }
