@@ -73,29 +73,26 @@ public class LinkedList {
     public static LinkedListNode removeNthFromEnd(LinkedListNode head, int n) {
 
         LinkedListNode temp = head;
-        LinkedListNode first = head;
+        LinkedListNode first = new LinkedListNode(0);
+        LinkedListNode second = new LinkedListNode(0);
 
         if(head.next == null) {
             return null;
         }
 
-        int i = 0;
-        for (i = 0; (i < n) && (temp.next != null); i++) {
+        for (int i = 1; (i <= n) && (temp != null); i++) {
             temp = temp.next;
         }
 
-        while (temp.next != null) {
+        while (temp != null) {
             temp = temp.next;
+            second = first;
             first = first.next;
         }
 
 
         if (first.next != null) {
-            if(first.next.next != null) {
-                first.next = first.next.next;
-            } else {
-                first.next = null;
-            }
+            second.next = first.next;
         }
 
         return head;
