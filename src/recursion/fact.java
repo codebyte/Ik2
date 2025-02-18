@@ -246,8 +246,6 @@ public class fact {
 
         get_distinct_subset(s, slate, index + 1, result);
         get_distinct_subset(s, slate + prev, index + count, result);
-        get_distinct_subset(s, slate + prev, index + count, result);
-        get_distinct_subset(s, slate + prev, index + count, result);
 
 
     }
